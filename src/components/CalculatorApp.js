@@ -13,7 +13,14 @@ const CalculatorApp = () => {
   // Function to handle equal button click
   const handleEqual = () => {
     try {
-      setResult(eval(input));
+      let res = input;
+      let chr = res.charAt(0);
+      while (chr == 0) {
+        res = res.substring(1, res.length);
+        chr = res.charAt(0);
+      }
+      setInput(res);
+      setResult(eval(res));
     } catch (error) {
       setResult("Error");
     }
@@ -23,6 +30,9 @@ const CalculatorApp = () => {
   const handleClear = () => {
     setResult("");
     setInput("");
+  };
+  const handleCe = () => {
+    setInput(input.substring(0, input.length - 1));
   };
 
   return (
@@ -49,9 +59,14 @@ const CalculatorApp = () => {
         <button onClick={() => handleClick("2")}>2</button>
         <button onClick={() => handleClick("3")}>3</button>
         <button onClick={() => handleClick("-")}>-</button>
-        <button onClick={() => handleClick("0")}>0</button>
         <button onClick={() => handleClick(".")}>.</button>
+        <button onClick={() => handleClick("0")}>0</button>
+        <button onClick={handleCe}>CE</button>
         <button onClick={() => handleClick("+")}>+</button>
+
+      </div>
+      <div className="bottom-buttons">
+        <button className="double-zero" onClick={() => handleClick("00")}>00</button>
         <button onClick={handleClear}>C</button>
         <button onClick={handleEqual}>=</button>
       </div>
