@@ -9,6 +9,9 @@ const CalculatorApp = () => {
   const handleClick = (value) => {
     setInput(input + value);
   };
+  const handleAns = (value) => {
+    setInput(value);
+  };
 
   // Function to handle equal button click
   const handleEqual = () => {
@@ -63,10 +66,8 @@ const CalculatorApp = () => {
         <button onClick={() => handleClick("0")}>0</button>
         <button onClick={handleCe}>CE</button>
         <button onClick={() => handleClick("+")}>+</button>
-
-      </div>
-      <div className="bottom-buttons">
-        <button className="double-zero" onClick={() => handleClick("00")}>00</button>
+        <button onClick={() => handleAns(result)}>ans</button>
+        <button onClick={() => handleClick("00")}>00</button>
         <button onClick={handleClear}>C</button>
         <button onClick={handleEqual}>=</button>
       </div>
